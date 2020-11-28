@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Layout } from 'antd';
+import React from 'react';
+import {Layout} from 'antd';
 import './app.css';
-import { getData } from "./api";
+import {Route, Switch} from 'react-router-dom';
+import MainPage from "./views/MainPage";
+import RegionPage from './views/RegionPage'
+import {createStore, applyMiddleware} from "redux";
+import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+import {rootReducer} from "./redux/reducers/reducer";
+
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export default function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    getData().then(setData);
-  }, []);
-
   return (
-    <Layout>
-      <pre>
-        { JSON.stringify(data, null, 2) }
-      </pre>
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Switch>
+          <Route path='/' exact={true} component={MainPage}/>
+          <Route path='/page' component={RegionPage}/>
+        </Switch>
+      </Layout>
+    </Provider>
   );
 }
