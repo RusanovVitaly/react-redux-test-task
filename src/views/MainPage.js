@@ -6,8 +6,6 @@ import {getRegions,sortData,searchName} from 'redux/actions/actions'
 import {Link} from "react-router-dom";
 
 
-const container_styles = {width:'80%',marginTop:'30px',margin:'0 auto'}
-
 export default function MainPage(){
 
   const dispatch = useDispatch();
@@ -18,7 +16,7 @@ export default function MainPage(){
   }, []);
 
   return(
-    <div style={container_styles} >
+    <div className='container' >
       <Input onChange={(event)=>dispatch(searchName(event.target.value))} style={{margin:'15px'}} placeholder='Поиск по области'/>
       <Button style={{margin:'15px'}} type="primary" onClick={()=>dispatch(sortData('asc'))}>По возрастанию</Button>
       <Button style={{margin:'15px'}} type="primary" onClick={()=>dispatch(sortData('desc'))}>По убыванию</Button>

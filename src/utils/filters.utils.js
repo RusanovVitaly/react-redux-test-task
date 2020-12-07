@@ -1,3 +1,4 @@
+import {useEffect} from "react";
 
 export function setFilters(state,filters){
   let isSorted = state.defaultData.length === state.data.length;
@@ -27,4 +28,20 @@ export function setFilters(state,filters){
 export function setName(state,name){
   const sortedData = Array.from(state.defaultData).filter(item=>item.territory.includes(name));
   return [...sortedData]
+}
+export default function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(
+    () => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+      return () => {
+        clearTimeout(handler);
+      };
+    },
+    [value]
+  );
+  return debouncedValue;
 }

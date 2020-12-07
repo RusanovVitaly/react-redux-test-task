@@ -5,7 +5,6 @@ import {useDispatch,useSelector} from 'react-redux'
 import {Link} from "react-router-dom";
 
 
-const container_styles = {width:'80%',margin:'0 auto',marginTop:'30px'}
 
 
 const RegionPage = () =>{
@@ -21,7 +20,7 @@ const RegionPage = () =>{
     }
   }, []);
   return(
-    <div style={container_styles}>
+    <div className='container'>
       <Breadcrumb>
         <Breadcrumb.Item><Link to='/'>На главную</Link></Breadcrumb.Item>
         <Breadcrumb.Item><Link to={`/page?id=${data?data.order:''}`}>{data?data.territory:''}</Link></Breadcrumb.Item>
